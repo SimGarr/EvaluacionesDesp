@@ -13,7 +13,7 @@ public class CursoClienteService {
     @Autowired
     private RestTemplate restTemplate;
 
-    private final String CURSO_BASE_URL = "http://54.221.149.255:8080/curso";
+    private final String CURSO_BASE_URL = "http://54.205.217.25:8080/curso";
 
     public boolean cursoExiste(String idCurso) {
         try {
