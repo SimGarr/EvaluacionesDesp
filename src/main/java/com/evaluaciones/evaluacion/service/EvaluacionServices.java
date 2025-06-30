@@ -1,11 +1,12 @@
 package com.evaluaciones.evaluacion.service;
 
-import com.evaluaciones.evaluacion.models.entity.EvaluacionEntity;
-import com.evaluaciones.evaluacion.repository.EvaluacionRepository;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.evaluaciones.evaluacion.models.entity.EvaluacionEntity;
+import com.evaluaciones.evaluacion.repository.EvaluacionRepository;
 
 @Service
 public class EvaluacionServices {
@@ -16,18 +17,18 @@ public class EvaluacionServices {
     @Autowired
     private CursoClienteService cursoClienteService;  // <-- Inyecta el cliente REST
 
-    // Crear una nueva evaluación con validación de curso
+    
     public EvaluacionEntity crearEvaluacion(EvaluacionEntity evaluacion) {
-        // Validar campos básicos de la evaluación
+        
         validarEvaluacion(evaluacion);
 
-        // Validar que el curso exista antes de guardar
+   
         if (evaluacion.getIdCurso() == null || 
             !cursoClienteService.cursoExiste(evaluacion.getIdCurso())) {
             throw new IllegalArgumentException("El curso con ID " + evaluacion.getIdCurso() + " no existe.");
         }
 
-        // Guardar la evaluación en la base de datos
+        
         return evaluacionRepository.save(evaluacion);
     }
 
